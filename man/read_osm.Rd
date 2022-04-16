@@ -10,7 +10,8 @@ read_osm(path)
 \item{path}{Path to .osm file (string)}
 }
 \value{
-An object of class "osm". There is a print method for this class.
+An object of class "osm". There are print and plot methods for this
+class.
 }
 \description{
 Read .osm files downloaded from the "Export" page on openstreetmap.org.
