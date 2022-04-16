@@ -4,7 +4,8 @@
 #'
 #' @param path Path to .osm file (string)
 #'
-#' @return An object of class "osm". There is a print method for this class.
+#' @return An object of class "osm". There are print and plot methods for this
+#' class.
 #' @importFrom sf st_read st_layers
 #' @export
 #'
