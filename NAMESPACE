@@ -3,7 +3,6 @@
 S3method(plot,osm)
 S3method(print,osm)
 export(read_osm)
-importFrom(sf,plot.sf)
 importFrom(sf,st_geometry)
 importFrom(sf,st_layers)
 importFrom(sf,st_read)

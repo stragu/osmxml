@@ -3,7 +3,7 @@
 #' @param x Object of class 'osm'
 #'
 #' @return A static visualisation
-#' @importFrom sf st_geometry plot.sf
+#' @importFrom sf st_geometry
 #' @export
 #'
 #' @examples
