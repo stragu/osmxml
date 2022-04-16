@@ -1,0 +1,10 @@
+Package: osmrender
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Stéphane Guillou
+Maintainer: Stéphane Guillou <stephane.guillou@member.fsf.org>
+Description: An OpenStreetMap data render for R.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
