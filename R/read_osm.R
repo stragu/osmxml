@@ -7,6 +7,7 @@
 #' @return An object of class "osm". There are print and plot methods for this
 #' class.
 #' @importFrom sf st_read st_layers
+#' @importFrom magrittr %>%
 #' @export
 #'
 #' @examples
@@ -17,7 +18,9 @@ read_osm <- function(path) {
   # read all layers, keeping names
   osm_layers <- sapply(layer_names, function(x) st_read(path,
                                                         layer = x,
-                                                        quiet = TRUE),
+                                                        quiet = TRUE) %>%
+                         # and expand the "other_tags" column
+                         osm_separate_tags(),
          USE.NAMES = TRUE)
   # assign S3 class
   class(osm_layers) <- "osm"
