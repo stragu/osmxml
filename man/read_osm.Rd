@@ -4,10 +4,12 @@
 \alias{read_osm}
 \title{Read OSM data}
 \usage{
-read_osm(path)
+read_osm(path, expand_tags = TRUE)
 }
 \arguments{
 \item{path}{Path to .osm file (string)}
+
+\item{expand_tags}{Should the "other_tags" columns be expanded into single-tag columns? (logical; default is TRUE)}
 }
 \value{
 An object of class "osm". There are print and plot methods for this

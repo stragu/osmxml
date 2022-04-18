@@ -2,16 +2,16 @@
 % Please edit documentation in R/read_osm.R
 \name{print.osm}
 \alias{print.osm}
-\title{Title}
+\title{Print method for OSM objects}
 \usage{
 \method{print}{osm}(obj)
 }
 \arguments{
-\item{obj}{}
+\item{obj}{Object of class "osm"}
 }
 \value{
-
+Description of object: what it is and what it contains.
 }
 \description{
-Title
+Print method for OSM objects
 }

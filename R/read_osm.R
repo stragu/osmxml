@@ -3,6 +3,7 @@
 #' Read .osm files downloaded from the "Export" page on openstreetmap.org.
 #'
 #' @param path Path to .osm file (string)
+#' @param expand_tags Should the "other_tags" columns be expanded into single-tag columns? (logical; default is TRUE)
 #'
 #' @return An object of class "osm". There are print and plot methods for this
 #' class.
@@ -11,17 +12,19 @@
 #' @export
 #'
 #' @examples
-read_osm <- function(path) {
+read_osm <- function(path, expand_tags = TRUE) {
   if (!file.exists(path)) stop("'path' is not a valid path to a .osm file")
   # store names of all components of OSM file
   layer_names <- st_layers(path)$name
   # read all layers, keeping names
   osm_layers <- sapply(layer_names, function(x) st_read(path,
                                                         layer = x,
-                                                        quiet = TRUE) %>%
-                         # and expand the "other_tags" column
-                         osm_separate_tags(),
-         USE.NAMES = TRUE)
+                                                        quiet = TRUE),
+                       USE.NAMES = TRUE)
+  # only expand other_tags if user chose to
+  if (expand_tags) {
+    osm_layers <- lapply(osm_layers, osm_separate_tags)
+  }
   # assign S3 class
   class(osm_layers) <- "osm"
   # return a list of class "osm collection"
@@ -29,11 +32,11 @@ read_osm <- function(path) {
 }
 
 
-#' Title
+#' Print method for OSM objects
 #'
-#' @param obj
+#' @param obj Object of class "osm"
 #'
-#' @return
+#' @return Description of object: what it is and what it contains.
 #' @export
 #'
 #' @examples
