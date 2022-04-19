@@ -14,23 +14,29 @@ osm_separate_tags <- function(x, col_name = "other_tags") {
   # split into list of single-row dataframes
   sf_attr_split <- split(sf_attr, 1:nrow(sf_attr))
   # separate other_tags for each
-  sf_attr_sep <- sapply(sf_attr_split, separate_tags_single, col_name = col_name)
-  # bind rows into single dataframe
-  all_names <- unique(unlist(lapply(sf_attr_sep, names)))
-  sf_attr_sep_all <- do.call(rbind,
-                             lapply(sf_attr_sep,
-                                    function(current_df) data.frame(c(current_df,
-                                                                      sapply(setdiff(all_names, names(current_df)),
-                                                                             function(y) NA)),
-                                                                    check.names = FALSE)))
+  sf_attr_sep <- lapply(sf_attr_split, separate_tags_single, col_name = col_name)
+  # if single-row dataframe, don't bind rows
+  if (length(sf_attr_sep) > 1) {
+    # bind rows into single dataframe
+    all_names <- unique(unlist(lapply(sf_attr_sep, names)))
+    sf_attr_sep <- do.call(rbind,
+                           lapply(sf_attr_sep,
+                                  function(current_df) data.frame(c(current_df,
+                                                                    sapply(setdiff(all_names, names(current_df)),
+                                                                           function(y) NA)),
+                                                                  check.names = FALSE)))
+  }
   # add geometries back in
-  sf::st_sf(st_geometry(x), sf_attr_sep_all)
+  sf::st_sf(st_geometry(x), sf_attr_sep)
 }
 
 # helper function for expanding tags in single-row dataframe
 separate_tags_single <- function(x, col_name = "other_tags") {
-  # if no extra tag(s), return dataframe as is
-  if (is.na(x[[col_name]])) return(x)
+  # if no extra tag(s), return dataframe as is, without other_tags column
+  if (is.na(x[[col_name]])) {
+    x[[col_name]] <- NULL
+    return(x)
+  }
   # split tags into character vector
   others <- strsplit(x[[col_name]], '","')[[1]]
   # remove double-quotes
@@ -46,7 +52,7 @@ separate_tags_single <- function(x, col_name = "other_tags") {
   # bind columns
   single_wide <- cbind(x, others_wide)
   # remove original
-  single_wide$other_tags <- NULL
+  single_wide[[col_name]] <- NULL
   # return wide single-row df
   single_wide
 }

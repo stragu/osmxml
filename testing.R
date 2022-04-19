@@ -59,13 +59,46 @@ sf_attr_sep <- sapply(sf_attr_split, separate_tags_single, col_name = col_name)
 # bind rows into single dataframe
 all_names <- unique(unlist(lapply(sf_attr_sep, names)))
 # -> THIS IS SLOW
+the_list <- lapply(sf_attr_sep,
+                   function(current_df) data.frame(c(current_df,
+                                                     sapply(setdiff(all_names, names(current_df)),
+                                                            function(y) NA)),
+                                                   check.names = FALSE))
 sf_attr_sep_all <- do.call(rbind,
-                           lapply(sf_attr_sep,
-                                  function(current_df) data.frame(c(current_df,
-                                                                    sapply(setdiff(all_names, names(current_df)),
-                                                                           function(y) NA)),
-                                                                  check.names = FALSE)))
+                           the_list)
 # try bind_rows instead: so much faster...
 sf_attr_sep_all <- dplyr::bind_rows(sf_attr_sep)
 # add geometries back in
 sf::st_sf(st_geometry(x), sf_attr_sep_all)
+
+# get geometry type
+
+annerley <- read_osm("~/Downloads/map.osm")
+annerley
+plot(annerley)
+annerley$other_relations %>% summary()
+sf::st_geometry_type(annerley$other, by_geometry = FALSE)
+sapply(annerley, sf::st_geometry_type, by_geometry = FALSE)
+
+#### single row dataframe ####
+x = sb_points[1,]
+col_name = "other_tags"
+# remove geometry to deal with simple dataframe
+sf_attr <- sf::st_drop_geometry(x)
+# split into list of single-row dataframes
+sf_attr_split <- split(sf_attr, 1:nrow(sf_attr))
+# separate other_tags for each
+sf_attr_sep <- lapply(sf_attr_split, separate_tags_single, col_name = col_name)
+# if single-row dataframe, don't bind rows
+if (length(sf_attr_sep) > 1) {
+  # bind rows into single dataframe
+  all_names <- unique(unlist(lapply(sf_attr_sep, names)))
+  sf_attr_sep <- do.call(rbind,
+                         lapply(sf_attr_sep,
+                                function(current_df) data.frame(c(current_df,
+                                                                  sapply(setdiff(all_names, names(current_df)),
+                                                                         function(y) NA)),
+                                                                check.names = FALSE)))
+}
+# add geometries back in
+sf::st_sf(st_geometry(x), sf_attr_sep)
