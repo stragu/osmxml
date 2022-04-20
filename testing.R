@@ -54,19 +54,9 @@ col_name = "other_tags"
 sf_attr <- sf::st_drop_geometry(x)
 # split into list of single-row dataframes
 sf_attr_split <- split(sf_attr, 1:nrow(sf_attr))
-# separate other_tags for each
+# separate other_tags for each: somwhat slow too
 sf_attr_sep <- sapply(sf_attr_split, separate_tags_single, col_name = col_name)
 # bind rows into single dataframe
-all_names <- unique(unlist(lapply(sf_attr_sep, names)))
-# -> THIS IS SLOW
-the_list <- lapply(sf_attr_sep,
-                   function(current_df) data.frame(c(current_df,
-                                                     sapply(setdiff(all_names, names(current_df)),
-                                                            function(y) NA)),
-                                                   check.names = FALSE))
-sf_attr_sep_all <- do.call(rbind,
-                           the_list)
-# try bind_rows instead: so much faster...
 sf_attr_sep_all <- dplyr::bind_rows(sf_attr_sep)
 # add geometries back in
 sf::st_sf(st_geometry(x), sf_attr_sep_all)

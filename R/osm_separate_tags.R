@@ -6,6 +6,7 @@
 #' @return sf object with single-tag columns
 #' @export
 #' @importFrom sf st_drop_geometry st_geometry st_sf
+#' @importFrom dplyr bind_rows
 #'
 #' @examples
 osm_separate_tags <- function(x, col_name = "other_tags") {
@@ -18,13 +19,7 @@ osm_separate_tags <- function(x, col_name = "other_tags") {
   # if single-row dataframe, don't bind rows
   if (length(sf_attr_sep) > 1) {
     # bind rows into single dataframe
-    all_names <- unique(unlist(lapply(sf_attr_sep, names)))
-    sf_attr_sep <- do.call(rbind,
-                           lapply(sf_attr_sep,
-                                  function(current_df) data.frame(c(current_df,
-                                                                    sapply(setdiff(all_names, names(current_df)),
-                                                                           function(y) NA)),
-                                                                  check.names = FALSE)))
+    sf_attr_sep <- dplyr::bind_rows(sf_attr_sep)
   }
   # add geometries back in
   sf::st_sf(st_geometry(x), sf_attr_sep)
