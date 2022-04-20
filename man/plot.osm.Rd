@@ -4,14 +4,22 @@
 \alias{plot.osm}
 \title{Plot OSM data}
 \usage{
-\method{plot}{osm}(x)
+\method{plot}{osm}(
+  x,
+  layers = c("multipolygons", "multilinestrings", "lines", "points", "other_relations"),
+  palette = c(1, 2, 3, 4, 6)
+)
 }
 \arguments{
 \item{x}{Object of class 'osm'}
+
+\item{layers}{Character vector of names of items to plot}
+
+\item{palette}{Vector of colour values of same length as layers}
 }
 \value{
 A static visualisation
 }
 \description{
-Plot OSM data
+Rudimentary rendering of an OSM export, with one style per layer.
 }
