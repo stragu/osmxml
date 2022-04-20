@@ -7,7 +7,7 @@
 #'
 #' @return An object of class "osm". There are print and plot methods for this
 #' class.
-#' @importFrom sf st_read st_layers
+#' @importFrom sf st_read st_layers st_geometry_type
 #' @importFrom magrittr %>%
 #' @export
 #'
@@ -43,4 +43,9 @@ read_osm <- function(path, expand_tags = TRUE) {
 print.osm <- function(obj) {
   cat("OSM data object made of", length(obj), "simple feature collections: ")
   cat(paste(names(obj), collapse = ", "))
+  cat("\nThe corresponding sf geometry types are:\n")
+  geom_types <- sapply(obj, sf::st_geometry_type, by_geometry = FALSE) %>%
+    as.character()
+  names(geom_types) <- names(obj)
+  print(geom_types, quote = FALSE)
 }
