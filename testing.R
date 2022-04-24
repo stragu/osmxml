@@ -3,9 +3,10 @@
 # - get bbox at import so it can be used for first plotted layer
 # - support XML of single object (?) -> this would add osmdata to dependencies
 # - add tests
-# - make binding faster
+# V make binding faster
 # - import id presets: https://github.com/openstreetmap/id-tagging-schema/tree/main/data/presets
-
+# - download from web, syntax: https://www.openstreetmap.org/api/0.6/map?bbox=153.01449%2C-27.52169%2C153.03133%2C-27.51274
+# - add "source" attribute, to potentially differentiate between import methods in the future
 
 #### Example OSM file ####
 

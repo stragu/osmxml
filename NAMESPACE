@@ -2,8 +2,8 @@
 
 S3method(plot,osm)
 S3method(print,osm)
-export(osm_separate_tags)
-export(read_osm)
+export(oexp_read)
+export(oexp_separate_tags)
 importFrom(dplyr,bind_rows)
 importFrom(magrittr,"%>%")
 importFrom(sf,st_drop_geometry)

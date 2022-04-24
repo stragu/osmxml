@@ -9,7 +9,7 @@
 #' @importFrom dplyr bind_rows
 #'
 #' @examples
-osm_separate_tags <- function(x, col_name = "other_tags") {
+oexp_separate_tags <- function(x, col_name = "other_tags") {
   # remove geometry to deal with simple dataframe
   sf_attr <- sf::st_drop_geometry(x)
   # split into list of single-row dataframes
