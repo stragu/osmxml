@@ -2,6 +2,7 @@
 
 S3method(plot,osm)
 S3method(print,osm)
+export(oexp_download)
 export(oexp_read)
 export(oexp_separate_tags)
 importFrom(dplyr,bind_rows)
