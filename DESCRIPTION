@@ -1,12 +1,12 @@
 Package: osmexport
 Type: Package
-Title: Tools for import and rendering of 'OpenStreetMap' data exports
+Title: Download, import, prepare and render 'OpenStreetMap' data exports
 Version: 0.1.9000
 Authors@R: person("Stéphane", "Guillou",
   email = "stephane.guillou@member.fsf.org",
   role = c("aut", "cre"),
   comment = c(ORCID = "0000-0001-8992-0951"))
-Description: Tools to import .osm files and plot the data with a default rendering.
+Description: Tools to download and import .osm files, and plot the data with a default rendering.
 Imports: sf, dplyr
 License: GPL (>= 3)
 Encoding: UTF-8
