@@ -19,7 +19,12 @@ The path is returned so it can easily be piped into the
   \code{\link{oexp_read}} function
 }
 \description{
-Download OSM export
+Download an OSM export by specifying its bounding box, which only mimics the
+\url{https://www.openstreetmap.org} "Export" functionality. The
+osmexport package does not further make use of the OSM API, given
+that it is mainly intended to be used for editing purposes, as explained on
+the API Usage Policy website:
+\url{https://operations.osmfoundation.org/policies/api/}
 }
 \examples{
 \dontrun{
