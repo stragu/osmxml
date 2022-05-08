@@ -35,8 +35,13 @@ oexp_download <- function(bbox, destfile = "map.osm") {
                   bbox[2], "%2C",
                   bbox[3], "%2C",
                   bbox[4])
+  # wait for 1 second to be respectful of API
+  Sys.sleep(1)
   # download OSM export
-  download.file(query, destfile)
+  download.file(query, destfile,
+                headers = c("User-Agent" = paste("R package osmexport v.",
+                                                 packageVersion("osmexport")))
+                )
   # return the path for reuse
   return(destfile)
 }
