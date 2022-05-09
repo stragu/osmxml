@@ -145,12 +145,25 @@ are:
 -   [osmar](https://cran.r-project.org/web/packages/osmar/index.html)
     accesses OSM data from different sources and converts it to various
     formats. Note that it hasn’t been updated since 2013.
--   [osrm](https://cran.r-project.org/web/packages/osrm) bridges R with
-    the OSRM API (routing service based on OpenStreetMap data).
+
+Transport-specific packages:
+
 -   [stplanr](https://cran.r-project.org/web/packages/stplanr) provides
     tools for sustainable transport planning, making use of the osrm
     package.
+-   [osrm](https://cran.r-project.org/web/packages/osrm) bridges R with
+    the OSRM API (routing service based on OpenStreetMap data).
+-   [opentripplanner](https://docs.ropensci.org/opentripplanner/)
+    provides an interface to OpenTripPlanner (OTP), a routing service
+    that relies on OpenStreetMap data.
+
+To acquire basemaps:
+
 -   [OpenStreetMap](https://cran.r-project.org/web/packages/OpenStreetMap)
     allows downloading rendered OSM data from various servers.
--   [OSMscale](https://cran.r-project.org/web/packages/osmplotr) to plot
-    spatial data with OSM basemaps and corresponding scalebars.
+-   [OSMscale](https://cran.r-project.org/web/packages/osmplotr) plots
+    spatial data with OSM basemaps and corresponding scale bars.
+
+Other interactive visualisation packages automatically fetch rendered
+OSM data as basemaps, like [leaflet](https://rstudio.github.io/leaflet/)
+and [tmap](https://r-tmap.github.io/tmap/).
