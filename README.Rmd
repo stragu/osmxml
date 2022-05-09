@@ -1,0 +1,90 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# osmexport
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+**osmexport** is an R package useful to download, read, prepare and (rudimentarily) visualise OpenStreetMap (OSM) exports like the `map.osm` file you would get from the [OSM website's "Export" page](https://www.openstreetmap.org/export).
+
+This package might not be what you're after: please see below the section "Other OSM-related R packages" to find more powerful tools.
+
+## Installation
+
+You can install the development version of osmexport from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("stragu/osmexport")
+```
+
+## Available functions
+
+* `oexp_download()`: download an OSM export by defining its bounding box, save it to file.
+* `oexp_read()`: read a `.osm` file as an object of class `osm`
+* `oexp_separate_tags()`: separate the tags contained in the `other_tags` column. This is done by default with importing the data with `oexp_read()`
+
+## The `osm` class
+
+The `osm` S3 class – very much subject to changing in name and properties – has `print()` and `plot()` methods. It is made of `[sf](https://r-spatial.github.io/sf/)` ("simple features") spatial objects.
+
+## Example
+
+The functions available are designed to be pipeable. For example, to download and read the area around [Te Kura Tatauranga, Waipapa Taumata Rau](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-statistics.html):
+
+```{r Te_Kura_Tatauranga}
+library(osmexport)
+TKT <- c(174.76598, -36.85440, 174.77019, -36.85129) |>
+  oexp_download() |>
+  oexp_read()
+# see what the object contains
+TKT
+```
+
+We can now use the default plot method to have a glimpse at the data:
+
+```{r plot}
+plot(TKT)
+```
+
+Because the parts of the object are of class `sf`, they can be processed with sf and well as dplyr functions:
+
+```{r process_data, message=FALSE}
+library(dplyr)
+library(sf)
+# most common "building" values in polygons
+TKT$multipolygons |>
+  st_drop_geometry() |>         # remove geometry column
+  filter(!is.na(building)) |>   # only keep buildings
+  count(building, sort = TRUE)  # most commons values at the top
+```
+
+## Other OSM-related R packages
+
+There are many other OSM-related R packages that might be more suitable for what you are hoping to achieve. Notable packages available on CRAN are:
+
+* [osmadata](https://cran.r-project.org/web/packages/osmdata) uses the Overpass API to download datasets based on location and tags. Use this for a more targeted download.
+* [osmextract](https://cran.r-project.org/web/packages/osmextract) uses different providers to download chunks of large data dumps, for specific regions and dates. Some providers offer data already prepared for particular uses (e.g. data relevant to cycling).
+* [osmplotr](https://cran.r-project.org/web/packages/osmplotr) downloads OSM data with the Overpass API and provides many tools to render the data.
+* [osmar](https://cran.r-project.org/web/packages/osmar/index.html) accesses OSM data from different sources and converts it to various formats. Note that it hasn't been updated since 2013.
+* [osrm](https://cran.r-project.org/web/packages/osrm) bridges R with the OSRM API (routing service based on OpenStreetMap data).
+* [stplanr](https://cran.r-project.org/web/packages/stplanr) provides tools for sustainable transport planning, making use of the osrm package.
+* [OpenStreetMap](https://cran.r-project.org/web/packages/OpenStreetMap) allows downloading rendered OSM data from various servers.
+* [OSMscale](https://cran.r-project.org/web/packages/osmplotr) to plot spatial data with OSM basemaps and corresponding scalebars. 
+
+## Data licence
+
+OSM data included in this package (in the `./inst` directory) and downloaded with the `oexp_download()` function is © OpenStreetMap contributors, and the conditions of its reuse are defined by the [ODbL licence](https://opendatacommons.org/licenses/odbl/). You likely need to include this information on anything derived from it. Find out more on the [OSM website](https://www.openstreetmap.org/copyright).
