@@ -26,6 +26,15 @@ that it is mainly intended to be used for editing purposes, as explained on
 the API Usage Policy website:
 \url{https://operations.osmfoundation.org/policies/api/}
 }
+\section{Licence}{
+
+
+All data downloaded with this function is © OpenStreetMap contributors,
+and the conditions of its reuse are defined by the ODbL licence.
+You likely need to include this information on anything derived from it.
+Find out more on the OSM website: \url{https://www.openstreetmap.org/copyright}
+}
+
 \examples{
 \dontrun{
 # Download and read area around Te Kura Tatauranga, Waipapa Taumata Rau

@@ -7,6 +7,13 @@
 #' the API Usage Policy website:
 #' \url{https://operations.osmfoundation.org/policies/api/}
 #'
+#' @section Licence:
+#'
+#' All data downloaded with this function is © OpenStreetMap contributors,
+#' and the conditions of its reuse are defined by the ODbL licence.
+#' You likely need to include this information on anything derived from it.
+#' Find out more on the OSM website: \url{https://www.openstreetmap.org/copyright}
+#'
 #' @param bbox bounding box of area to download, determined by a numeric vector
 #'   of four values: Western longitude, Southern latitude, Eastern longitude,
 #'   Northern latitude (in this order)
