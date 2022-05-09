@@ -95,6 +95,37 @@ TKT$multipolygons |>
 #> 10      ruins  1
 ```
 
+## Contributions and feedback
+
+Contributions are welcome and appreciated. You can contribute to this
+package by:
+
+-   Testing it and [reporting
+    issues](https://github.com/stragu/osmexport/issues) you encounter
+-   Suggesting a change with a pull request (but please discuss your
+    idea in an issue beforehand)
+-   Writing a new vignette with an interesting worked example
+
+Note that all contributions to the codebase will be released under the
+[GPL](LICENSE.md), and submitting your contribution to this repository
+is an implicit agreement.
+
+We expect contributors to respect UQRUG’s [Code of
+Conduct](https://gitlab.com/stragu/uqrug/blob/master/Code_of_Conduct.md).
+
+If a conversation or comment does not belong in a public issue report,
+please contact the maintainer listed in the [package
+description](DESCRIPTION).
+
+## Data licence
+
+OSM data included in this package (in the `./inst` directory) and
+downloaded with the `oexp_download()` function is © OpenStreetMap
+contributors, and the conditions of its reuse are defined by the [ODbL
+licence](https://opendatacommons.org/licenses/odbl/). You likely need to
+include this information on anything derived from it. Find out more on
+the [OSM website](https://www.openstreetmap.org/copyright).
+
 ## Other OSM-related R packages
 
 There are many other OSM-related R packages that might be more suitable
@@ -123,12 +154,3 @@ are:
     allows downloading rendered OSM data from various servers.
 -   [OSMscale](https://cran.r-project.org/web/packages/osmplotr) to plot
     spatial data with OSM basemaps and corresponding scalebars.
-
-## Data licence
-
-OSM data included in this package (in the `./inst` directory) and
-downloaded with the `oexp_download()` function is © OpenStreetMap
-contributors, and the conditions of its reuse are defined by the [ODbL
-licence](https://opendatacommons.org/licenses/odbl/). You likely need to
-include this information on anything derived from it. Find out more on
-the [OSM website](https://www.openstreetmap.org/copyright).
