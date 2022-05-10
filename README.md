@@ -30,14 +30,14 @@ devtools::install_github("stragu/osmexport")
     box, save it to file.
 -   `oexp_read()`: read a `.osm` file as an object of class `osm`
 -   `oexp_separate_tags()`: separate the tags contained in the
-    `other_tags` column. This is done by default with importing the data
+    `other_tags` column. This is done by default when importing the data
     with `oexp_read()`
 
 ## The `osm` class
 
 The `osm` S3 class – very much subject to changing in name and
 properties – has `print()` and `plot()` methods. It is made of
-`[sf](https://r-spatial.github.io/sf/)` (“simple features”) spatial
+[`sf`](https://r-spatial.github.io/sf/) (“simple features”) spatial
 objects.
 
 ## Example
