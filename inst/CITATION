@@ -1,16 +1,16 @@
 citHeader("To cite osmrender in publications use:")
 
 citEntry(
-  entry    = "Article",
-  title    = ,
-  author   = ,
-  journal  = ,
-  year     = ,
-  volume   = ,
-  number   = ,
-  pages    = ,
-  url      = ,
-  textVersion = paste(
-
-  )
+  entry    = "Misc",
+  title    = "osmexport: read and prepare OpenStreetMap exports",
+  author   = person("Stéphane", "Guillou", role = "aut"),
+  year     = "2022",
+  url      = "https://github.com/stragu/osmexport",
+  textVersion  =
+  paste("Stéphane Guillou (2022).",
+        "osmexport: read and prepare OpenStreetMap exports.",
+        "https://github.com/stragu/osmexport")
 )
+
+citFooter("Please also remember to cite OpenStreetMap contributors",
+  "as specified on openstreetmap.org/copyright")
