@@ -1,7 +1,7 @@
 Package: osmexport
 Type: Package
 Title: Download, import, prepare and render 'OpenStreetMap' data exports
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: person("Stéphane", "Guillou",
   email = "stephane.guillou@member.fsf.org",
   role = c("aut", "cre"),
