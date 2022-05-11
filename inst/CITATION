@@ -6,6 +6,7 @@ citEntry(
   author   = person("Stéphane", "Guillou", role = "aut"),
   year     = "2022",
   url      = "https://github.com/stragu/osmexport",
+  doi      = "10.5281/zenodo.6537381",
   textVersion  =
   paste("Stéphane Guillou (2022).",
         "osmexport: read and prepare OpenStreetMap exports.",

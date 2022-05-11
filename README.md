@@ -4,6 +4,8 @@
 # osmexport
 
 <!-- badges: start -->
+
+[![DOI](https://zenodo.org/badge/489214893.svg)](https://zenodo.org/badge/latestdoi/489214893)
 <!-- badges: end -->
 
 **osmexport** is an R package useful to download, read, prepare and
