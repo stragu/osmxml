@@ -47,8 +47,8 @@ oexp_download <- function(bbox, destfile = NULL, use_cached = TRUE) {
                               ".osm")
     # check if cached file exists, and if so, return its name
     if (file.exists(destfile) & use_cached) {
-      message("Using cached file ", destfile,
-              ", which was last modified on ",
+      message("Using cached .osm file with same bbox, ",
+              "which was last modified on ",
               file.mtime(destfile))
       return(destfile)
     }
