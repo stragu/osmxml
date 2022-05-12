@@ -4,27 +4,32 @@
 \alias{oexp_download}
 \title{Download OSM export}
 \usage{
-oexp_download(bbox, destfile = "map.osm")
+oexp_download(bbox, destfile = NULL, use_cached = TRUE)
 }
 \arguments{
 \item{bbox}{bounding box of area to download, determined by a numeric vector
 of four values: Western longitude, Southern latitude, Eastern longitude,
 Northern latitude (in this order)}
 
-\item{destfile}{path to download the file to. Defaults to "map.osm" in the
-current working directory.}
+\item{destfile}{path to download the file to. Defaults to a filename
+that includes the bbox values so it can be used as cached data (in the
+current working directory).}
+
+\item{use_cached}{should the function look for a matching cached file?
+Logical, default is TRUE.}
 }
 \value{
 The path is returned so it can easily be piped into the
   \code{\link{oexp_read}} function
 }
 \description{
-Download an OSM export by specifying its bounding box, which only mimics the
-\url{https://www.openstreetmap.org} "Export" functionality. The
-osmexport package does not further make use of the OSM API, given
-that it is mainly intended to be used for editing purposes, as explained on
-the API Usage Policy website:
-\url{https://operations.osmfoundation.org/policies/api/}
+Download an OSM export by specifying its bounding box, or find a local cached
+equivalent. The osmexport package does not further make use of the OSM API,
+given that it is mainly intended to be used for editing purposes, as explained
+on the API Usage Policy website:
+\url{https://operations.osmfoundation.org/policies/api/}. This function
+only mimics the existing \url{https://www.openstreetmap.org} "Export"
+functionality to save the user manually downloading the file from the website.
 }
 \section{Licence}{
 

@@ -1,11 +1,12 @@
 #' Download OSM export
 #'
-#' Download an OSM export by specifying its bounding box, which only mimics the
-#' \url{https://www.openstreetmap.org} "Export" functionality. The
-#' osmexport package does not further make use of the OSM API, given
-#' that it is mainly intended to be used for editing purposes, as explained on
-#' the API Usage Policy website:
-#' \url{https://operations.osmfoundation.org/policies/api/}
+#' Download an OSM export by specifying its bounding box, or find a local cached
+#' equivalent. The osmexport package does not further make use of the OSM API,
+#' given that it is mainly intended to be used for editing purposes, as explained
+#' on the API Usage Policy website:
+#' \url{https://operations.osmfoundation.org/policies/api/}. This function
+#' only mimics the existing \url{https://www.openstreetmap.org} "Export"
+#' functionality to save the user manually downloading the file from the website.
 #'
 #' @section Licence:
 #'
@@ -17,8 +18,11 @@
 #' @param bbox bounding box of area to download, determined by a numeric vector
 #'   of four values: Western longitude, Southern latitude, Eastern longitude,
 #'   Northern latitude (in this order)
-#' @param destfile path to download the file to. Defaults to "map.osm" in the
-#' current working directory.
+#' @param destfile path to download the file to. Defaults to a filename
+#'   that includes the bbox values so it can be used as cached data (in the
+#'   current working directory).
+#' @param use_cached should the function look for a matching cached file?
+#'   Logical, default is TRUE.
 #'
 #' @return The path is returned so it can easily be piped into the
 #'   \code{\link{oexp_read}} function
@@ -31,10 +35,28 @@
 #'    oexp_download() |>
 #'    oexp_read()
 #' }
-oexp_download <- function(bbox, destfile = "map.osm") {
+oexp_download <- function(bbox, destfile = NULL, use_cached = TRUE) {
   # check validity of bounding box
   if (length(bbox) != 4 | !is.numeric(bbox)) {
     stop("bbox must be a numeric vector of length 4")
+  }
+  # build default name if none supplied
+  if (is.null(destfile)) {
+    destfile <- paste0("oexp_",
+                              paste(bbox, collapse = "_"),
+                              ".osm")
+    # check if cached file exists, and if so, return its name
+    if (file.exists(destfile) & use_cached) {
+      message("Using cached file ", destfile,
+              ", which was last modified on ",
+              file.mtime(destfile))
+      return(destfile)
+    }
+  } else {
+    # check validity of destfile
+    if (!is.character(destfile) | length(destfile) != 1) {
+      stop("destfile must be a character vector of length 1")
+    }
   }
   # build query to OSM API
   query <- paste0("https://www.openstreetmap.org/api/0.6/map?bbox=",
