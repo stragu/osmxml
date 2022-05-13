@@ -1,4 +1,4 @@
 library(testthat)
-library(osmrender)
+library(osmexport)
 
-test_check("osmrender")
+test_check("osmexport")

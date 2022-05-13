@@ -7,7 +7,7 @@ Authors@R: person("Stéphane", "Guillou",
   role = c("aut", "cre"),
   comment = c(ORCID = "0000-0001-8992-0951"))
 Description: Tools to download and import .osm files, and plot the data with a default rendering.
-Imports: sf, dplyr
+Imports: sf, dplyr, magrittr
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
