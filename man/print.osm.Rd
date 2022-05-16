@@ -15,3 +15,10 @@ Description of object: what it is and what it contains.
 \description{
 Print method for OSM objects
 }
+\examples{
+oexp_read(
+  system.file("extdata/south_brisbane.osm",
+              package = "osmexport"),
+  expand_tags = FALSE) |>
+  print()
+}

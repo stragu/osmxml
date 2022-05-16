@@ -9,12 +9,38 @@ oexp_read(path, expand_tags = TRUE)
 \arguments{
 \item{path}{Path to .osm file (string)}
 
-\item{expand_tags}{Should the "other_tags" columns be expanded into single-tag columns? (logical; default is TRUE)}
+\item{expand_tags}{Should the "other_tags" columns be expanded into
+single-tag columns? (logical; default is TRUE)}
 }
 \value{
-An object of class "osm". There are print and plot methods for this
-class.
+An object of class "osm". There are \code{print} and \code{plot}
+  methods for this class.
+
+  According to GDAL, the object is made of:
+  \itemize{
+  \item points: “node” features that have
+  significant tags attached
+  \item lines: “way” features that are not recognised
+  as areas
+  \item multilinestrings: “relation” features that form a
+  multilinestring (type = ‘multilinestring’ or type = ‘route’)
+  \item
+  multipolygons: “relation” features that form a multipolygon (type =
+  ‘multipolygon’ or type = ‘boundary’), and “way” features that are
+  recognised as areas
+  \item other_relations: “relation” features that do not
+  belong to either multilinestrings or multipolygons
+  }
 }
 \description{
-Read .osm files downloaded from the "Export" page on openstreetmap.org.
+Read OSM XML files, sometimes obtained from the "Export" page on
+openstreetmap.org. Internally, uses the \code{sf::st_read()} function, which
+itself use GDAL's OSM driver: \url{https://gdal.org/drivers/vector/osm.html}
+}
+\examples{
+# read example South Brisbane .osm file
+sb <- oexp_read(
+  system.file("extdata/south_brisbane.osm",
+              package = "osmexport"),
+  expand_tags = FALSE)
 }
