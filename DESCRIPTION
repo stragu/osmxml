@@ -1,17 +1,17 @@
-Package: osmexport
+Package: osmxml
 Type: Package
-Title: Download, import, prepare and render 'OpenStreetMap' data exports
+Title: Import, prepare and render 'OpenStreetMap' XML files
 Version: 0.2.0.9000
 Authors@R: person("Stéphane", "Guillou",
   email = "stephane.guillou@member.fsf.org",
   role = c("aut", "cre"),
   comment = c(ORCID = "0000-0001-8992-0951"))
-Description: Tools to download and import .osm files, and plot the data with a default rendering.
+Description: Tools to import .osm files, prepare them for analysis, and plot the data with a default rendering.
 Imports: sf, dplyr, magrittr
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

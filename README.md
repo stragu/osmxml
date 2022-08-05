@@ -1,16 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# osmexport
+# osmxml
 
 <!-- badges: start -->
 
 [![DOI](https://zenodo.org/badge/489214893.svg)](https://zenodo.org/badge/latestdoi/489214893)
 <!-- badges: end -->
 
-**osmexport** is an R package useful to download, read, prepare and
-(rudimentarily) visualise OpenStreetMap (OSM) exports like the `map.osm`
-file you would get from the [OSM website’s “Export”
+**osmxml** is an R package useful to download, read, prepare and
+(rudimentarily) visualise OpenStreetMap (OSM) XML files like the
+`map.osm` file you would get from the [OSM website’s “Export”
 page](https://www.openstreetmap.org/export).
 
 This package might not be what you’re after: please see below the
@@ -23,17 +23,17 @@ You can install the development version of osmexport from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("stragu/osmexport")
+devtools::install_github("stragu/osmxml")
 ```
 
 ## Available functions
 
--   `oexp_download()`: download an OSM export by defining its bounding
+-   `ox_download()`: download an OSM export by defining its bounding
     box, save it to file.
--   `oexp_read()`: read a `.osm` file as an object of class `osm`
--   `oexp_separate_tags()`: separate the tags contained in the
+-   `ox_read()`: read a `.osm` file as an object of class `osm`
+-   `ox_separate_tags()`: separate the tags contained in the
     `other_tags` column. This is done by default when importing the data
-    with `oexp_read()`
+    with `ox_read()`
 
 ## The `osm` class
 
@@ -49,12 +49,13 @@ download and read the area around [Te Kura Tatauranga, Waipapa Taumata
 Rau](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-statistics.html):
 
 ``` r
-library(osmexport)
+library(osmxml)
 #> All data, downloaded or included as an example, is © OpenStreetMap contributors, and the conditions of its reuse are defined by the ODbL licence.
 #> Find out more on the OSM website: https://www.openstreetmap.org/copyright
 TKT <- c(174.76598, -36.85440, 174.77019, -36.85129) |>
-  oexp_download() |>
-  oexp_read()
+  ox_download() |>
+  ox_read()
+#> Using cached .osm file with same bbox, which was last modified on 2022-08-06 00:09:17
 # see what the object contains
 TKT
 #> OSM data object made of 5 simple feature collections: points, lines, multilinestrings, multipolygons, other_relations
@@ -103,7 +104,7 @@ Contributions are welcome and appreciated. You can contribute to this
 package by:
 
 -   Testing it and [reporting
-    issues](https://github.com/stragu/osmexport/issues) you encounter
+    issues](https://github.com/stragu/osmxml/issues) you encounter
 -   Suggesting a change with a pull request (but please discuss your
     idea in an issue beforehand)
 -   Writing a new vignette with an interesting worked example
@@ -122,7 +123,7 @@ description](DESCRIPTION).
 ## Data licence
 
 OSM data included in this package (in the `./inst` directory) and
-downloaded with the `oexp_download()` function is © OpenStreetMap
+downloaded with the `ox_download()` function is © OpenStreetMap
 contributors, and the conditions of its reuse are defined by the [ODbL
 licence](https://opendatacommons.org/licenses/odbl/). You likely need to
 include this information on anything derived from it. Find out more on

@@ -1,8 +1,11 @@
-# osmexport (development version)
+# osmxml (development version)
 
-* By default, `oexp_download()` now uses a cached download if an export using 
-the same bounding box was downloaded previously
-* Add tests for `oexp_download()`
+* Rename package from "osmexport" to "osmxml" (and rename functions to use the 
+"ox_" prefix instead of "oexp_") to expand its use to any OSM XML file and to 
+clarify that the package's primary use is not data acquisition from OSM servers
+* By default, `ox_download()` (previously `oexp_download()`) now uses a cached 
+download if an export using the same bounding box was downloaded previously
+* Add tests for `ox_download()` (previously `oexp_download()`)
 
 # osmexport 0.2.0
 

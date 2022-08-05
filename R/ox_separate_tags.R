@@ -7,9 +7,10 @@
 #' @export
 #' @importFrom sf st_drop_geometry st_geometry st_sf
 #' @importFrom dplyr bind_rows
+#' @importFrom utils strcapture
 #'
 #' @examples
-oexp_separate_tags <- function(x, col_name = "other_tags") {
+ox_separate_tags <- function(x, col_name = "other_tags") {
   # remove geometry to deal with simple dataframe
   sf_attr <- sf::st_drop_geometry(x)
   # split into list of single-row dataframes
@@ -48,6 +49,6 @@ separate_tags_single <- function(x, col_name = "other_tags") {
   single_wide <- cbind(x, others_wide)
   # remove original
   single_wide[[col_name]] <- NULL
-  # return wide single-row df
+  # return wide single-row dataframe
   single_wide
 }

@@ -5,7 +5,7 @@
 #' itself use GDAL's OSM driver: \url{https://gdal.org/drivers/vector/osm.html}
 #'
 #' @param path Path to .osm file (string)
-#' @param expand_tags Should the "other_tags" columns be expanded into
+#' @param expand_tags Should the "other_tags" column be expanded into
 #'   single-tag columns? (logical; default is TRUE)
 #'
 #' @return An object of class "osm". There are \code{print} and \code{plot}
@@ -33,11 +33,11 @@
 #'
 #' @examples
 #' # read example South Brisbane .osm file
-#' sb <- oexp_read(
+#' sb <- ox_read(
 #'   system.file("extdata/south_brisbane.osm",
-#'               package = "osmexport"),
+#'               package = "osmxml"),
 #'   expand_tags = FALSE)
-oexp_read <- function(path, expand_tags = TRUE) {
+ox_read <- function(path, expand_tags = TRUE) {
   if (!file.exists(path)) stop("'path' is not a valid path to a .osm file")
   # store names of all components of OSM file
   layer_names <- st_layers(path)$name
@@ -48,11 +48,11 @@ oexp_read <- function(path, expand_tags = TRUE) {
                        USE.NAMES = TRUE)
   # only expand other_tags if user chose to
   if (expand_tags) {
-    osm_layers <- lapply(osm_layers, oexp_separate_tags)
+    osm_layers <- lapply(osm_layers, ox_separate_tags)
   }
   # assign S3 class
   class(osm_layers) <- "osm"
-  # return a list of class "osm collection"
+  # return a list of class "osm"
   osm_layers
 }
 
@@ -65,9 +65,9 @@ oexp_read <- function(path, expand_tags = TRUE) {
 #' @export
 #'
 #' @examples
-#' oexp_read(
+#' ox_read(
 #'   system.file("extdata/south_brisbane.osm",
-#'               package = "osmexport"),
+#'               package = "osmxml"),
 #'   expand_tags = FALSE) |>
 #'   print()
 print.osm <- function(obj) {

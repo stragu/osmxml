@@ -1,7 +1,7 @@
 #' Download OSM export
 #'
 #' Download an OSM export by specifying its bounding box, or find a local cached
-#' equivalent. The osmexport package does not further make use of the OSM API,
+#' equivalent. The osmxml package does not further make use of the OSM API,
 #' given that it is mainly intended to be used for editing purposes, as explained
 #' on the API Usage Policy website:
 #' \url{https://operations.osmfoundation.org/policies/api/}. This function
@@ -25,26 +25,27 @@
 #'   Logical, default is TRUE.
 #'
 #' @return The path is returned so it can easily be piped into the
-#'   \code{\link{oexp_read}} function
+#'   \code{\link{ox_read}} function
+#' @importFrom utils packageVersion download.file
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' # Download and read area around Te Kura Tatauranga, Waipapa Taumata Rau
 #' TKT <- c(174.76598, -36.85440, 174.77019, -36.85129) |>
-#'    oexp_download() |>
-#'    oexp_read()
+#'    ox_download() |>
+#'    ox_read()
 #' }
-oexp_download <- function(bbox, destfile = NULL, use_cached = TRUE) {
+ox_download <- function(bbox, destfile = NULL, use_cached = TRUE) {
   # check validity of bounding box
   if (length(bbox) != 4 | !is.numeric(bbox)) {
     stop("bbox must be a numeric vector of length 4")
   }
   # build default name if none supplied
   if (is.null(destfile)) {
-    destfile <- paste0("oexp_",
-                              paste(bbox, collapse = "_"),
-                              ".osm")
+    destfile <- paste0("ox_",
+                       paste(bbox, collapse = "_"),
+                       ".osm")
     # check if cached file exists, and if so, return its name
     if (file.exists(destfile) & use_cached) {
       message("Using cached .osm file with same bbox, ",
@@ -67,9 +68,9 @@ oexp_download <- function(bbox, destfile = NULL, use_cached = TRUE) {
   # wait for 1 second to be respectful of API
   Sys.sleep(1)
   # download OSM export
-  download.file(query, destfile,
-                headers = c("User-Agent" = paste("R package osmexport v.",
-                                                 packageVersion("osmexport")))
+  utils::download.file(query, destfile,
+                headers = c("User-Agent" = paste("R package osmxml v.",
+                                                 utils::packageVersion("osmxml")))
                 )
   # return the path for reuse
   return(destfile)

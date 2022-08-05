@@ -21,5 +21,5 @@
 A static visualisation
 }
 \description{
-Rudimentary rendering of an OSM export, with one style per layer.
+Rudimentary rendering of OSM XML data, with one style per layer.
 }

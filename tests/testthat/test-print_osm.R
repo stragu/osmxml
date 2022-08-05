@@ -1,5 +1,5 @@
-south_brisbane <- oexp_read(system.file("extdata/south_brisbane.osm",
-                                        package = "osmexport"),
+south_brisbane <- ox_read(system.file("extdata/south_brisbane.osm",
+                                        package = "osmxml"),
                             expand_tags = FALSE)
 test_that("print method works", {
   expect_vector(print(south_brisbane),
