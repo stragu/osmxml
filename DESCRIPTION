@@ -8,7 +8,7 @@ Authors@R: person("Stéphane", "Guillou",
   comment = c(ORCID = "0000-0001-8992-0951"))
 Description: Tools to import .osm files, prepare them for analysis, and plot the data with a default rendering.
 Imports: sf, dplyr, magrittr
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
