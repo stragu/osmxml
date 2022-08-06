@@ -4,10 +4,12 @@
 \alias{print.osm}
 \title{Print method for OSM objects}
 \usage{
-\method{print}{osm}(obj)
+\method{print}{osm}(x, ...)
 }
 \arguments{
-\item{obj}{Object of class "osm"}
+\item{x}{Object of class "osm"}
+
+\item{...}{Other arguments passed on to \link{print}}
 }
 \value{
 Description of object: what it is and what it contains.

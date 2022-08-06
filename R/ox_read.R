@@ -59,7 +59,8 @@ ox_read <- function(path, expand_tags = TRUE) {
 
 #' Print method for OSM objects
 #'
-#' @param obj Object of class "osm"
+#' @param x Object of class "osm"
+#' @param ... Other arguments passed on to \link{print}
 #'
 #' @return Description of object: what it is and what it contains.
 #' @export
@@ -70,12 +71,12 @@ ox_read <- function(path, expand_tags = TRUE) {
 #'               package = "osmxml"),
 #'   expand_tags = FALSE) |>
 #'   print()
-print.osm <- function(obj) {
-  cat("OSM data object made of", length(obj), "simple feature collections: ")
-  cat(paste(names(obj), collapse = ", "))
+print.osm <- function(x, ...) {
+  cat("OSM data object made of", length(x), "simple feature collections: ")
+  cat(paste(names(x), collapse = ", "))
   cat("\nThe corresponding sf geometry types are:\n")
-  geom_types <- sapply(obj, sf::st_geometry_type, by_geometry = FALSE) %>%
+  geom_types <- sapply(x, sf::st_geometry_type, by_geometry = FALSE) %>%
     as.character()
-  names(geom_types) <- names(obj)
-  print(geom_types, quote = FALSE)
+  names(geom_types) <- names(x)
+  print(geom_types, quote = FALSE, ...)
 }

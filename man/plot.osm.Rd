@@ -7,7 +7,8 @@
 \method{plot}{osm}(
   x,
   layers = c("multipolygons", "multilinestrings", "lines", "points", "other_relations"),
-  palette = c(1, 2, 3, 4, 6)
+  palette = c(1, 2, 3, 4, 6),
+  ...
 )
 }
 \arguments{
@@ -16,6 +17,8 @@
 \item{layers}{Character vector of names of items to plot}
 
 \item{palette}{Vector of colour values of same length as layers}
+
+\item{...}{Other arguments passed on to \link{plot}}
 }
 \value{
 A static visualisation

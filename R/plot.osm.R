@@ -5,6 +5,7 @@
 #' @param x Object of class 'osm'
 #' @param layers Character vector of names of items to plot
 #' @param palette Vector of colour values of same length as layers
+#' @param ... Other arguments passed on to \link{plot}
 #'
 #' @return A static visualisation
 #' @importFrom sf st_geometry
@@ -15,7 +16,8 @@
 #' @examples
 plot.osm <- function(x, layers = c("multipolygons", "multilinestrings", "lines",
                                    "points", "other_relations"),
-                     palette = c(1,2,3,4,6)) {
+                     palette = c(1,2,3,4,6),
+                     ...) {
   x_names <- names(x)
   names(palette) <- layers
   graphics::par(xpd = TRUE)
@@ -24,7 +26,8 @@ plot.osm <- function(x, layers = c("multipolygons", "multilinestrings", "lines",
     st_geometry(x$multipolygons) %>%
       plot(border = palette["multipolygons"],
            # transparent grey fill
-           col = rgb(198, 198, 198, 100, maxColorValue = 255))
+           col = rgb(198, 198, 198, 100, maxColorValue = 255),
+           ...)
   }
   # 2. Multiline strings
   if ("multilinestrings" %in% x_names & "multilinestrings" %in% layers) {
