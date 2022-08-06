@@ -48,5 +48,5 @@ plot.osm <- function(x, layers = c("multipolygons", "multilinestrings", "lines",
          pch = c(0, NA, NA, 1, 13))
   # use lines for 2 (multi)line layers
   legend("topleft", legend = rep.int("", length(layers)), col = palette,
-         pch = c(NA, "—", "—", NA, NA), bty = "n")
+         pch = c(NA, "\u2014", "\u2014", NA, NA), bty = "n")
 }

@@ -2,7 +2,7 @@
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(
     paste("All data, downloaded or included as an example, is",
-          "© OpenStreetMap contributors,",
+          "\u00a9 OpenStreetMap contributors,",
           "and the conditions of its reuse are defined by the",
           "ODbL licence.\nFind out more on the OSM website:",
           "https://www.openstreetmap.org/copyright")
