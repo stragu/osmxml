@@ -14,6 +14,10 @@
 #' @export
 #'
 #' @examples
+#' sb <- ox_read(
+#'   system.file("extdata/south_brisbane.osm",
+#'               package = "osmxml"))
+#' plot(sb, main = "South Brisbane")
 plot.osm <- function(x, layers = c("multipolygons", "multilinestrings", "lines",
                                    "points", "other_relations"),
                      palette = c(1,2,3,4,6),

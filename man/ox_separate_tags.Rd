@@ -17,3 +17,10 @@ sf object with single-tag columns
 \description{
 Separate other_tags column into separate, single-tag columns
 }
+\examples{
+sb <- ox_read(
+  system.file("extdata/south_brisbane.osm",
+              package = "osmxml"),
+  expand_tags = FALSE)
+ox_separate_tags(sb$points)
+}

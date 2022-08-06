@@ -8,6 +8,7 @@ you can now use the `main` argument to add a title to a visualisation.
 * By default, `ox_download()` (previously `oexp_download()`) now uses a cached 
 download if an export using the same bounding box was downloaded previously
 * Add tests for `ox_download()` (previously `oexp_download()`)
+* Documentation improvements
 
 # osmexport 0.2.0
 

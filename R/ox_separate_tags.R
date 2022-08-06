@@ -10,6 +10,11 @@
 #' @importFrom utils strcapture
 #'
 #' @examples
+#' sb <- ox_read(
+#'   system.file("extdata/south_brisbane.osm",
+#'               package = "osmxml"),
+#'   expand_tags = FALSE)
+#' ox_separate_tags(sb$points)
 ox_separate_tags <- function(x, col_name = "other_tags") {
   # remove geometry to deal with simple dataframe
   sf_attr <- sf::st_drop_geometry(x)

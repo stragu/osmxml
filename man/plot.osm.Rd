@@ -26,3 +26,9 @@ A static visualisation
 \description{
 Rudimentary rendering of OSM XML data, with one style per layer.
 }
+\examples{
+sb <- ox_read(
+  system.file("extdata/south_brisbane.osm",
+              package = "osmxml"))
+plot(sb, main = "South Brisbane")
+}
